@@ -11,9 +11,9 @@ Source code of josapton.github.io website. Powered by [Jekyll](https://jekyllrb.
 ## Preview
 
 <summary>Light</summary>
-<img src="https://github.com/josapton/josapton.github.io/blob/main/light.png" alt="Preview of josapton.github.io in light mode"/>
+<img src="dark.png" alt="Preview of josapton.github.io in light mode"/>
 <summary>Dark</summary>
-<img src="https://github.com/josapton/josapton.github.io/blob/main/dark.png" alt="Preview of josapton.github.io in dark mode"/>
+<img src="dark.png" alt="Preview of josapton.github.io in dark mode"/>
 
 ## Features
 
