@@ -58,7 +58,7 @@ or
 - Install Jekyll and Bundler using `gem install jekyll bundler`
 - Clone the repository `git clone https://github.com/jitinnair1/gradfolio USERNAME.github.io`
 ```bash
-cd **username**.github.io
+cd USERNAME.github.io
 code .
 ```
 - Locate `pages.yml` in `.github/workflows` and add write permissions after the name:
