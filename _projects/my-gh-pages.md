@@ -1,3 +1,9 @@
+---
+layout: post
+title: Joko Saptono's GitHub Pages
+description: josapton.github.io source code
+---
+
 # [josapton.github.io](https://josapton.github.io/)
 
 Source code of josapton.github.io website. Powered by [Jekyll](https://jekyllrb.com/) and [Gradfolio](https://github.com/jitinnair1/gradfolio).
@@ -5,9 +11,9 @@ Source code of josapton.github.io website. Powered by [Jekyll](https://jekyllrb.
 ## Preview
 
 <summary>Light</summary>
-<img src="light.png" alt="Preview of josapton.github.io in light mode"/>
+<img src="https://github.com/josapton/josapton.github.io/blob/main/light.png" alt="Preview of josapton.github.io in light mode"/>
 <summary>Dark</summary>
-<img src="dark.png" alt="Preview of josapton.github.io in dark mode"/>
+<img src="https://github.com/josapton/josapton.github.io/blob/main/dark.png" alt="Preview of josapton.github.io in dark mode"/>
 
 ## Features
 
