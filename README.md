@@ -24,7 +24,7 @@ Check out the [Jekyll docs](https://jekyllrb.com/docs/) and [Gradfolio wiki](htt
 ### Installation
 
 - Go to https://github.com/jitinnair1/gradfolio and click on `Use this template`
-- Name the repository ***username***.github.io
+- Name the repository **username**.github.io
 - Locate `pages.yml` in `.github/workflows` and add write permissions after the name:
 ```yaml
 name: Build and Deploy to Github Pages
@@ -41,18 +41,18 @@ on:
 - Edit `baseurl` and `url` in the `_config.yml` file to:
 ```yaml
 baseurl: ""
-url: "https://***username***.github.io"
+url: "https://**username**.github.io"
 ```
 - Modify the contents and personalise the template
-- The new site should be ready at `https://***username***.github.io/`
+- The new site should be ready at `https://**username**.github.io/`
 
 or
 
 - Install [Ruby+Devkit](https://www.ruby-lang.org/en/downloads/)
 - Install Jekyll and Bundler using `gem install jekyll bundler`
-- Clone the repository `git clone https://github.com/jitinnair1/gradfolio ***username***.github.io`
-> `cd ***username***.github.io`
-> `code .`
+- Clone the repository `git clone https://github.com/jitinnair1/gradfolio **username**.github.io`
+> cd **username**.github.io
+> code .
 - Locate `pages.yml` in `.github/workflows` and add write permissions after the name:
 ```yaml
 name: Build and Deploy to Github Pages
@@ -69,17 +69,17 @@ on:
 - Edit `baseurl` and `url` in the `_config.yml` file to:
 ```yaml
 baseurl: ""
-url: "https://***username***.github.io"
+url: "https://**username**.github.io"
 ```
 - `bundle install`
 - `bundle exec jekyll serve --force-polling --trace`
 - Modify the contents and personalise the template
-- create a new public repository named ***username***.github.io
+- create a new public repository named username.github.io
 > git add .
 > git commit -m 'Initial GitHub pages site with Jekyll'
-> git remote add origin https://github.com/***username***/***username***.github.io.git
+> git remote add origin https://github.com/**username**/**username**.github.io.git
 > git push -u origin master
-- The new site should be ready at `https://***username***.github.io/`
+- The new site should be ready at `https://**username**.github.io/`
 
 ### External
 
