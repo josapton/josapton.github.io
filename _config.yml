@@ -14,14 +14,14 @@ paginate_path: /blog/page:num/
 
 # Social media links in footer
 linkedin: "jokosaptono"
-stackoverflow: "#"
+# stackoverflow: "#"
 github: "josapton"
-researchgate: "#"
-orcid: "#"
-quora: "#"
-instagram: "#"
-facebook: "#"
-bluesky: "#"
+# researchgate: "#"
+# orcid: "#"
+# quora: "#"
+instagram: "josapton"
+facebook: "josapton"
+# bluesky: "#"
 
 # Markdown
 highlighter: rouge
