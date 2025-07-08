@@ -1,9 +1,9 @@
 ### your site title here
 
-title: Your Name
-description: subtitle | affiliations | motto
+title: Joko Saptono
+description: Seseorang yang Ingin Menjadi Programmer Handal Namun Enggan Ngoding
 
-baseurl: / #name of GitHub repository
+baseurl: "" #name of GitHub repository
 url: "https://josapton.github.io" #custom url to be used instead of GitHub repository
 email: #
 
@@ -13,9 +13,9 @@ permalink: /blog/:year/:title/
 paginate_path: /blog/page:num/
 
 # Social media links in footer
-linkedin: "#"
+linkedin: "https://www.linkedin.com/in/jokosaptono"
 stackoverflow: "#"
-github: "#"
+github: "https://github.com/josapton"
 researchgate: "#"
 orcid: "#"
 quora: "#"
