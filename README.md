@@ -51,8 +51,8 @@ or
 - Install [Ruby+Devkit](https://www.ruby-lang.org/en/downloads/)
 - Install Jekyll and Bundler using `gem install jekyll bundler`
 - Clone the repository `git clone https://github.com/jitinnair1/gradfolio ***username***.github.io`
->- `cd ***username***.github.io`
->- `code .`
+> `cd ***username***.github.io`
+> `code .`
 - Locate `pages.yml` in `.github/workflows` and add write permissions after the name:
 ```yaml
 name: Build and Deploy to Github Pages
@@ -75,20 +75,17 @@ url: "https://***username***.github.io"
 - `bundle exec jekyll serve --force-polling --trace`
 - Modify the contents and personalise the template
 - create a new public repository named ***username***.github.io
->- git add .
->- git commit -m 'Initial GitHub pages site with Jekyll'
->- git remote add origin https://github.com/***username***/***username***.github.io.git
->- git push -u origin master
+> git add .
+> git commit -m 'Initial GitHub pages site with Jekyll'
+> git remote add origin https://github.com/***username***/***username***.github.io.git
+> git push -u origin master
 - The new site should be ready at `https://***username***.github.io/`
 
 ### External
 
-- [**Ruby**](https://www.ruby-lang.org/en/) is...
-A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
-- [**Jekyll**](https://jekyllrb.com/)
-Jekyll is a simple, blog-aware, static site generator perfect for personal, project, or organization sites. Think of it like a file-based CMS, without all the complexity. Jekyll takes your content, renders Markdown and Liquid templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server. Jekyll is the engine behind GitHub Pages, which you can use to host sites right from your GitHub repositories.
-- [**Gradfolio**](https://github.com/jitinnair1/gradfolio)
-Responsive, dark-mode ready Jekyll theme designed for use as a personal website and portfolio.
+- [**Ruby**](https://www.ruby-lang.org/en/) a dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
+- [**Jekyll**](https://jekyllrb.com/) is a simple, blog-aware, static site generator perfect for personal, project, or organization sites. Think of it like a file-based CMS, without all the complexity. Jekyll takes your content, renders Markdown and Liquid templates, and spits out a complete, static website ready to be served by Apache, Nginx or another web server. Jekyll is the engine behind GitHub Pages, which you can use to host sites right from your GitHub repositories.
+- [**Gradfolio**](https://github.com/jitinnair1/gradfolio) responsive, dark-mode ready Jekyll theme designed for use as a personal website and portfolio.
 
 ## About Me
 
