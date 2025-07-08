@@ -13,9 +13,9 @@ permalink: /blog/:year/:title/
 paginate_path: /blog/page:num/
 
 # Social media links in footer
-linkedin: "https://www.linkedin.com/in/jokosaptono"
+linkedin: "jokosaptono"
 stackoverflow: "#"
-github: "https://github.com/josapton"
+github: "josapton"
 researchgate: "#"
 orcid: "#"
 quora: "#"
