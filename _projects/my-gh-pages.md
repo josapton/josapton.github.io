@@ -32,7 +32,7 @@ Check out the [Jekyll docs](https://jekyllrb.com/docs/) and [Gradfolio wiki](htt
 ### Installation
 
 - Go to [https://github.com/jitinnair1/gradfolio](https://github.com/jitinnair1/gradfolio) and click on `Use this template`
-- Name the repository USERNAME.github.io
+- Name the repository `USERNAME.github.io`
 - Locate `pages.yml` in `.github/workflows` and add write permissions after the name
 
 ~~~yaml
