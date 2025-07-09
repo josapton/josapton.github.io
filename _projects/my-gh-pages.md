@@ -105,7 +105,7 @@ bundle exec jekyll serve --force-polling --trace
 ~~~
 
 - Modify the contents and personalise the template
-- Create a new public repository named USERNAME.github.io
+- Create a new public repository named `USERNAME.github.io`
 - Commit and push
 
 ~~~bash
