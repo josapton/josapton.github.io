@@ -6,14 +6,16 @@ description: josapton.github.io source code
 
 # [josapton.github.io](https://josapton.github.io/)
 
-Source code of josapton.github.io website. Powered by [Jekyll](https://jekyllrb.com/) and [Gradfolio](https://github.com/jitinnair1/gradfolio).
+([See on GitHub](https://github.com/josapton/josapton.github.io))
+
+Source code of my website. Powered by [Jekyll](https://jekyllrb.com/) and [Gradfolio](https://github.com/jitinnair1/gradfolio).
 
 ## Preview
 
 <summary>Light</summary>
-<img src="dark.png" alt="Preview of josapton.github.io in light mode"/>
+<img src="https://i.imgur.com/0nl43Ut.png" alt="Preview of josapton.github.io in light mode"/>
 <summary>Dark</summary>
-<img src="dark.png" alt="Preview of josapton.github.io in dark mode"/>
+<img src="https://i.imgur.com/5nVDCYx.png" alt="Preview of josapton.github.io in dark mode"/>
 
 ## Features
 
@@ -29,10 +31,11 @@ Check out the [Jekyll docs](https://jekyllrb.com/docs/) and [Gradfolio wiki](htt
 
 ### Installation
 
-- Go to https://github.com/jitinnair1/gradfolio and click on `Use this template`
+- Go to [https://github.com/jitinnair1/gradfolio](https://github.com/jitinnair1/gradfolio) and click on `Use this template`
 - Name the repository USERNAME.github.io
-- Locate `pages.yml` in `.github/workflows` and add write permissions after the name:
-```yaml
+- Locate `pages.yml` in `.github/workflows` and add write permissions after the name
+
+~~~yaml
 name: Build and Deploy to Github Pages
 
 permissions:
@@ -43,26 +46,38 @@ on:
         branches:
             - master
 ...
-```
-- Edit `baseurl` and `url` in the `_config.yml` file to:
-```yaml
+~~~
+
+- Edit `baseurl` and `url` in the `_config.yml` file to
+
+~~~yaml
 baseurl: ""
 url: "https://USERNAME.github.io"
-```
+~~~
+
 - Modify the contents and personalise the template
 - The new site should be ready at `https://USERNAME.github.io/`
 
 or
 
 - Install [Ruby+Devkit](https://www.ruby-lang.org/en/downloads/)
-- Install Jekyll and Bundler using `gem install jekyll bundler`
-- Clone the repository `git clone https://github.com/jitinnair1/gradfolio USERNAME.github.io`
-```bash
+- Install Jekyll and Bundler using
+
+~~~bash
+gem install jekyll bundler
+~~~
+
+- Clone the repository
+
+~~~bash
+git clone https://github.com/jitinnair1/gradfolio USERNAME.github.io
 cd USERNAME.github.io
 code .
-```
-- Locate `pages.yml` in `.github/workflows` and add write permissions after the name:
-```yaml
+~~~
+
+- Locate `pages.yml` in `.github/workflows` and add write permissions after the name
+
+~~~yaml
 name: Build and Deploy to Github Pages
 
 permissions:
@@ -73,24 +88,33 @@ on:
         branches:
             - master
 ...
-```
-- Edit `baseurl` and `url` in the `_config.yml` file to:
-```yaml
+~~~
+
+- Edit `baseurl` and `url` in the `_config.yml` file to
+
+~~~yaml
 baseurl: ""
 url: "https://USERNAME.github.io"
-```
-```bash
+~~~
+
+- Install required file to run Jekyll in local
+
+~~~bash
 bundle install
 bundle exec jekyll serve --force-polling --trace
-```
+~~~
+
 - Modify the contents and personalise the template
-- create a new public repository named USERNAME.github.io
-```bash
+- Create a new public repository named USERNAME.github.io
+- Commit and push
+
+~~~bash
 git add .
 git commit -m 'Initial GitHub pages site with Jekyll'
 git remote add origin https://github.com/USERNAME/USERNAME.github.io.git
 git push -u origin master
-```
+~~~
+
 - The new site should be ready at `https://USERNAME.github.io/`
 
 ### External

@@ -1,6 +1,6 @@
 # [josapton.github.io](https://josapton.github.io/)
 
-Source code of josapton.github.io website. Powered by [Jekyll](https://jekyllrb.com/) and [Gradfolio](https://github.com/jitinnair1/gradfolio).
+Source code of my website. Powered by [Jekyll](https://jekyllrb.com/) and [Gradfolio](https://github.com/jitinnair1/gradfolio).
 
 ## Preview
 
@@ -25,7 +25,7 @@ Check out the [Jekyll docs](https://jekyllrb.com/docs/) and [Gradfolio wiki](htt
 
 - Go to https://github.com/jitinnair1/gradfolio and click on `Use this template`
 - Name the repository USERNAME.github.io
-- Locate `pages.yml` in `.github/workflows` and add write permissions after the name:
+- Locate `pages.yml` in `.github/workflows` and add write permissions after the name
 ```yaml
 name: Build and Deploy to Github Pages
 
@@ -38,7 +38,7 @@ on:
             - master
 ...
 ```
-- Edit `baseurl` and `url` in the `_config.yml` file to:
+- Edit `baseurl` and `url` in the `_config.yml` file to
 ```yaml
 baseurl: ""
 url: "https://USERNAME.github.io"
@@ -49,13 +49,17 @@ url: "https://USERNAME.github.io"
 or
 
 - Install [Ruby+Devkit](https://www.ruby-lang.org/en/downloads/)
-- Install Jekyll and Bundler using `gem install jekyll bundler`
-- Clone the repository `git clone https://github.com/jitinnair1/gradfolio USERNAME.github.io`
+- Install Jekyll and Bundler using
 ```bash
+gem install jekyll bundler
+```
+- Clone the repository
+```bash
+git clone https://github.com/jitinnair1/gradfolio USERNAME.github.io
 cd USERNAME.github.io
 code .
 ```
-- Locate `pages.yml` in `.github/workflows` and add write permissions after the name:
+- Locate `pages.yml` in `.github/workflows` and add write permissions after the name
 ```yaml
 name: Build and Deploy to Github Pages
 
@@ -68,17 +72,19 @@ on:
             - master
 ...
 ```
-- Edit `baseurl` and `url` in the `_config.yml` file to:
+- Edit `baseurl` and `url` in the `_config.yml` file to
 ```yaml
 baseurl: ""
 url: "https://USERNAME.github.io"
 ```
+- Install required file to run Jekyll in local
 ```bash
 bundle install
 bundle exec jekyll serve --force-polling --trace
 ```
 - Modify the contents and personalise the template
-- create a new public repository named USERNAME.github.io
+- Create a new public repository named USERNAME.github.io
+- Commit and push
 ```bash
 git add .
 git commit -m 'Initial GitHub pages site with Jekyll'
