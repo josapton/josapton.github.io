@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Joko Saptono's GitHub Pages
-description: josapton.github.io source code
+description: This is josapton.github.io source code
 ---
 
 # [josapton.github.io](https://josapton.github.io/)

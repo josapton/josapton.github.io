@@ -1,7 +1,7 @@
 ### your site title here
 
 title: Joko Saptono
-description: Seseorang yang Ingin Menjadi Programmer Handal Namun Enggan Ngoding
+description: Someone who Ingin Menjadi Programmer Handal Namun Enggan Ngoding
 
 baseurl: "" #name of GitHub repository
 url: "https://josapton.github.io" #custom url to be used instead of GitHub repository
@@ -47,12 +47,9 @@ collections:
     output: true
     permalink: /projects/:name/
     order:
-      - shortProject.md
-      - longerProjectTitle.md
       - redirect.md
-      - project4.md
-      - project5.md
-      - project6.md
+      - my-gh-pages.md
+      - revou-coding-camp-mini-project.md
 
 sass:
   sass_dir: /assets/css/_sass
