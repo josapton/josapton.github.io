@@ -50,6 +50,7 @@ collections:
       - redirect.md
       - my-gh-pages.md
       - revou-coding-camp-mini-project.md
+      - capstone-data-analysis.md
 
 sass:
   sass_dir: /assets/css/_sass
