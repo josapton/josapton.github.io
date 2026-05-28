@@ -1,16 +1,48 @@
-# React + Vite
+# josapton's Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimalist, elegant, and cyber-themed personal portfolio website emphasizing **DevSecOps**, **Cybersecurity**, **Software Engineering**, and **AI**.
 
-Currently, two official plugins are available:
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Framer Motion](https://img.shields.io/badge/Framer-Black?style=for-the-badge&logo=framer&logoColor=blue)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌐 Overview
+Built with a sleek, terminal-inspired design language (monospace typography, blinking cursors, network node backgrounds, and grid scanlines), this portfolio is designed to be fully responsive with automatic Light/Dark mode support. 
 
-## React Compiler
+Live at: [https://josapton.github.io](https://josapton.github.io)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚡ Features
+- **Network Nodes Effect**: Interactive canvas background representing infrastructure and connectivity.
+- **Cyber/Terminal Theme**: Blinking cursors, monospace accents, scan lines, and command-line aesthetics.
+- **Dynamic Routing**: Built with `react-router-dom` for fast page transitions.
+- **Dark/Light Mode**: Soft emerald palette for light mode and vibrant neon green for dark mode.
+- **Fully Automated Deployment**: Powered by GitHub Actions for seamless continuous deployment to GitHub Pages.
 
-## Expanding the ESLint configuration
+## 🚀 Running Locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+If you'd like to run this project on your local machine:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/josapton/josapton.github.io.git
+   cd josapton.github.io
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   The site will be available at `http://localhost:5173/`.
+
+## 🛠️ Editing Content
+- **Projects**: Edit `src/pages/Projects.jsx`
+- **Research**: Edit `src/pages/Research.jsx`
+- **Theme**: Core CSS variables are defined in `src/index.css`
+
+## 📄 License
+This project is open-source and available under the MIT License.
