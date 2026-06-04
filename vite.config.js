@@ -18,15 +18,14 @@ export default defineConfig({
         icons: [
           {
             src: 'favicon.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'favicon.png',
-            sizes: '512x512',
-            type: 'image/png'
+            sizes: '72x72',
+            type: 'image/png',
+            purpose: 'any maskable'
           }
         ]
+      },
+      workbox: {
+        navigateFallbackDenylist: [/^\/resume\.pdf$/]
       }
     })
   ],
