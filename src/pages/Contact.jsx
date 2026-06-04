@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion'
-import { Mail } from 'lucide-react'
+import { Mail, Download } from 'lucide-react'
 import Navigation from '../components/Navigation'
+import Footer from '../components/Footer'
+import { useLanguage } from '../context/LanguageContext'
+import { en } from '../locales/en'
+import { id } from '../locales/id'
 
 const GithubIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -41,6 +45,10 @@ const stagger = {
 }
 
 export default function Contact() {
+  const { lang } = useLanguage()
+  const t = lang === 'en' ? en : id
+
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -52,7 +60,7 @@ export default function Contact() {
       <div className="grid-bg" />
       <Navigation />
 
-      <div style={{
+      <main style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -67,60 +75,56 @@ export default function Contact() {
           transition={{ duration: 0.4 }}
         >
           <h1 className="page-title" style={{ marginBottom: '0.625rem' }}>
-            <span className="accent">//</span> Contact<span className="cursor-blink" />
+            <span className="accent">//</span> {t.contact.title}<span className="cursor-blink" />
           </h1>
-          <p style={{
-            fontSize: '0.8125rem',
-            color: 'var(--color-text-secondary)',
-            maxWidth: '380px',
-            lineHeight: 1.7,
-          }}>
-            Reach out for collaborations, security research, or just to connect.
+          <p className="page-description" style={{ marginBottom: '1.5rem', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>
+            {t.contact.description}
           </p>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="section-shortcut"
+            style={{ textDecoration: 'none', display: 'inline-flex', padding: '0.5rem 1rem' }}
+          >
+            <Download size={14} className="accent" style={{ marginRight: '0.375rem' }} />
+            {t.contact.downloadResume}
+          </a>
         </motion.div>
 
-        <motion.div
-          className="contact-grid"
-          variants={stagger.container}
-          initial="hidden"
-          animate="show"
-        >
-          {socials.map((social) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              target={social.href.startsWith('mailto') ? undefined : '_blank'}
-              rel={social.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="card contact-card"
-              variants={stagger.item}
-              whileHover={{ y: -3 }}
-              style={{ display: 'block', textDecoration: 'none' }}
-            >
-              <div className="icon-wrapper">
-                {social.icon}
-              </div>
-              <div className="label">{social.label}</div>
-              <div className="handle">{social.handle}</div>
-            </motion.a>
-          ))}
-        </motion.div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%', maxWidth: '800px', alignItems: 'center' }}>
+          
+          <motion.div
+            style={{ width: '100%' }}
+            variants={stagger.container}
+            initial="hidden"
+            animate="show"
+          >
+            <div className="contact-grid">
+              {socials.map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target={social.href.startsWith('mailto') ? undefined : '_blank'}
+                  rel={social.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                  className="card contact-card"
+                  variants={stagger.item}
+                  whileHover={{ y: -3 }}
+                  style={{ display: 'block', textDecoration: 'none' }}
+                >
+                  <div className="icon-wrapper">
+                    {social.icon}
+                  </div>
+                  <div className="label">{social.label}</div>
+                  <div className="handle">{social.handle}</div>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
 
-        {/* Terminal-style footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          style={{ marginTop: '3rem', textAlign: 'center' }}
-        >
-          <p style={{
-            fontSize: '0.6875rem',
-            color: 'var(--color-text-muted)',
-            fontFamily: 'var(--font-mono)',
-          }}>
-            <span style={{ color: 'var(--color-accent)', opacity: 0.5 }}>$</span> echo "© {new Date().getFullYear()} josapton"
-          </p>
-        </motion.div>
-      </div>
+        </div>
+      </main>
+      <Footer />
     </motion.div>
   )
 }

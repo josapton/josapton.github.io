@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://josapton.github.io/sitemap.xml

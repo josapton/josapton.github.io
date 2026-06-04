@@ -1,13 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Particles from '../components/Particles'
-
-const navigation = [
-  { name: 'Projects', href: '/projects' },
-  { name: 'Research', href: '/research' },
-  { name: 'Contact', href: '/contact' },
-]
+import { useLanguage } from '../context/LanguageContext'
+import { en } from '../locales/en'
+import { id } from '../locales/id'
 
 function useTypingEffect(text, speed = 80, delay = 600) {
   const [displayed, setDisplayed] = useState('')
@@ -15,8 +12,13 @@ function useTypingEffect(text, speed = 80, delay = 600) {
 
   useEffect(() => {
     let i = 0
+    let interval = null
+    // eslint-disable-next-line
+    setDisplayed('')
+     
+    setDone(false)
     const timeout = setTimeout(() => {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         if (i < text.length) {
           setDisplayed(text.slice(0, i + 1))
           i++
@@ -25,18 +27,23 @@ function useTypingEffect(text, speed = 80, delay = 600) {
           clearInterval(interval)
         }
       }, speed)
-      return () => clearInterval(interval)
     }, delay)
-    return () => clearTimeout(timeout)
+    return () => {
+      clearTimeout(timeout)
+      if (interval) clearInterval(interval)
+    }
   }, [text, speed, delay])
 
   return { displayed, done }
 }
 
 export default function Home() {
+  const { lang } = useLanguage()
+  const t = lang === 'en' ? en : id
+
   const { displayed: typedName, done: nameDone } = useTypingEffect('josapton', 120, 400)
-  const { displayed: typedMotto, done: mottoDone } = useTypingEffect(
-    'Building secure, scalable systems and exploring the intersection of technology, data, and agriculture.',
+  const { displayed: typedMotto } = useTypingEffect(
+    t.home.description,
     25,
     1800
   )
@@ -52,7 +59,7 @@ export default function Home() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100vw',
+        width: '100%',
         height: '100vh',
         overflow: 'hidden',
         position: 'relative',
@@ -65,26 +72,18 @@ export default function Home() {
       <div className="scan-line" />
 
       {/* Particles */}
-      <Particles quantity={60} />
+      <Particles quantity={90} />
 
       {/* Navigation */}
-      <nav className="animate-fade-in" style={{ marginBottom: 'auto', paddingTop: '2.5rem', zIndex: 10 }}>
-        <ul style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem' }}>
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              className="nav-link"
-              style={{ fontSize: '0.8125rem' }}
-            >
-              {item.name}
-            </Link>
-          ))}
+      <nav className="animate-fade-in" aria-label="Main navigation" style={{ marginBottom: 'auto', paddingTop: '2.5rem', zIndex: 10 }}>
+        <ul style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', listStyle: 'none', padding: 0, margin: 0 }}>
+          <li><Link to="/portfolio" className="nav-link" style={{ fontSize: '0.8125rem' }}>{t.nav.portfolio}</Link></li>
+          <li><Link to="/contact" className="nav-link" style={{ fontSize: '0.8125rem' }}>{t.nav.contact}</Link></li>
         </ul>
       </nav>
 
       {/* Center content */}
-      <div style={{ zIndex: 10, textAlign: 'center', padding: '0 1.5rem', maxWidth: '680px' }}>
+      <main style={{ zIndex: 10, textAlign: 'center', padding: '0 1.5rem', maxWidth: '680px' }}>
         {/* Status line */}
         <div className="animate-fade-in-delay-1" style={{
           display: 'flex',
@@ -98,7 +97,7 @@ export default function Home() {
           letterSpacing: '0.05em',
         }}>
           <span className="status-dot" />
-          <span style={{ textTransform: 'uppercase' }}>Available for collaboration</span>
+          <span style={{ textTransform: 'uppercase' }}>{t.home.available}</span>
         </div>
 
         {/* Hero name with typing effect */}
@@ -138,15 +137,15 @@ export default function Home() {
           fontFamily: 'var(--font-mono)',
           letterSpacing: '0.05em',
         }}>
-          <span style={{ color: 'var(--color-accent)' }}>DevSecOps</span>
+          <span style={{ color: 'var(--color-accent)' }}>{t.home.interests.devsecops}</span>
           <span style={{ color: 'var(--color-text-muted)' }}>·</span>
-          <span style={{ color: 'var(--color-accent)' }}>Cybersecurity</span>
+          <span style={{ color: 'var(--color-accent)' }}>{t.home.interests.cybersecurity}</span>
           <span style={{ color: 'var(--color-text-muted)' }}>·</span>
-          <span style={{ color: 'var(--color-text-muted)' }}>Software Engineering</span>
+          <span style={{ color: 'var(--color-text-muted)' }}>{t.home.interests.software}</span>
           <span style={{ color: 'var(--color-text-muted)' }}>·</span>
-          <span style={{ color: 'var(--color-text-muted)' }}>AI</span>
+          <span style={{ color: 'var(--color-text-muted)' }}>{t.home.interests.ai}</span>
         </div>
-      </div>
+      </main>
 
 
       {/* Spacer */}

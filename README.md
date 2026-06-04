@@ -12,10 +12,14 @@ Built with a sleek, terminal-inspired design language (monospace typography, bli
 Live at: [https://josapton.github.io](https://josapton.github.io)
 
 ## ⚡ Features
-- **Network Nodes Effect**: Interactive canvas background representing infrastructure and connectivity.
+- **Network Nodes Effect**: Interactive canvas background representing infrastructure and connectivity with parallax mouse effects.
 - **Cyber/Terminal Theme**: Blinking cursors, monospace accents, scan lines, and command-line aesthetics.
-- **Dynamic Routing**: Built with `react-router-dom` for fast page transitions.
-- **Dark/Light Mode**: Soft emerald palette for light mode and vibrant neon green for dark mode.
+- **Hidden Terminal (Easter Egg)**: Type `~` or `sudo` to access a fully interactive terminal overlay with commands like `help`, `ls`, `neofetch`, and `ping`.
+- **Command Palette**: Press `Ctrl/Cmd + K` for a quick navigation and action menu.
+- **Real-Time GitHub Stats**: Fetches live repository and star counts from the GitHub API with local caching.
+- **Bilingual (i18n)**: Full English (EN) and Indonesian (ID) support with seamless context-based switching.
+- **Optimized PWA & SEO**: Structured JSON-LD data, Apple web app meta tags, robust accessibility (ARIA roles), and Service Worker caching.
+- **Dynamic Routing**: Built with `react-router-dom` using `BrowserRouter` and GitHub Pages SPA fallback.
 - **Fully Automated Deployment**: Powered by GitHub Actions for seamless continuous deployment to GitHub Pages.
 
 ## 🚀 Running Locally
@@ -40,9 +44,10 @@ If you'd like to run this project on your local machine:
    The site will be available at `http://localhost:5173/`.
 
 ## 🛠️ Editing Content
-- **Projects**: Edit `src/pages/Projects.jsx`
-- **Research**: Edit `src/pages/Research.jsx`
-- **Theme**: Core CSS variables are defined in `src/index.css`
+- **Portfolio / Projects / Research**: Edit `src/pages/Portfolio.jsx`
+- **Translations (i18n)**: Edit `src/locales/en.js` and `src/locales/id.js`
+- **Theme & Colors**: Core CSS variables are defined in `src/index.css`
+- **Easter Egg Commands**: Edit `src/components/EasterEgg.jsx`
 
 ## 📄 License
 This project is open-source and available under the MIT License.
