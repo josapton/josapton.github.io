@@ -325,9 +325,9 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--color-accent), transparent);
   opacity: 0;
   transition: opacity var(--transition-slow);
 }
@@ -361,9 +361,9 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
+  bottom: 0;
+  width: 4px;
+  background: var(--color-accent);
 }
 
 .card-featured:hover {
@@ -597,10 +597,8 @@ img {
 
 /* --- Section label --- */
 .section-label {
-  font-size: 0.6875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-accent);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
   font-family: var(--font-mono);
   margin-bottom: 1rem;
   display: flex;
@@ -609,8 +607,8 @@ img {
 }
 
 .section-label::before {
-  content: '//';
-  opacity: 0.5;
+  content: '--';
+  opacity: 0.7;
 }
 
 /* --- Grid --- */
@@ -629,6 +627,18 @@ img {
 @media (min-width: 1024px) {
   .grid-projects {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .grid-stats {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -913,7 +923,7 @@ img {
 .site-footer {
   margin-top: auto;
   padding: 2rem 1.5rem;
-  border-top: 1px dashed var(--color-border);
+  border-top: none;
   text-align: center;
 }
 
@@ -948,5 +958,59 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+/* --- Resume Viewer Styles --- */
+.resume-paper {
+  background-color: #fff;
+  color: #111;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  font-family: var(--font-sans);
+}
+
+.resume-paper h1, .resume-paper h2, .resume-paper h3, .resume-paper h4 {
+  margin: 0;
+}
+
+.resume-print-btn:hover {
+  background-color: var(--color-accent-dim);
+}
+
+@media print {
+  /* Hide everything else */
+  body * {
+    visibility: hidden;
+  }
+  
+  /* Make only the resume-paper visible */
+  .resume-paper, .resume-paper * {
+    visibility: visible;
+  }
+  
+  /* Reset layout for printing */
+  .resume-paper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm; /* A4 width */
+    height: 297mm; /* A4 height */
+    padding: 15mm; /* Typical print margin */
+    margin: 0;
+    box-shadow: none; /* No shadow on print */
+    background: transparent; /* Save ink */
+  }
+
+  /* Ensure modal backdrop and scrollbars don't interfere */
+  .resume-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent !important;
+    backdrop-filter: none !important;
   }
 }

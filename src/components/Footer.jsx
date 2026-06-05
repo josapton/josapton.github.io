@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-content">
         <p className="footer-text">
-          <span className="terminal-prompt">$</span> echo "&copy;{new Date().getFullYear()} josapton"
+          <span className="terminal-prompt">$</span> echo "&copy; {new Date().getFullYear()} josapton"
         </p>
         <p className="footer-subtext">
           {t.footer.builtWith}

@@ -6,7 +6,7 @@
   "homepage": "https://josapton.github.io",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -17,6 +17,7 @@
     "lucide-react": "^1.17.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-github-calendar": "^5.0.6",
     "react-router-dom": "^7.15.1"
   },
   "devDependencies": {

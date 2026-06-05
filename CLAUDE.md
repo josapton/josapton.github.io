@@ -8,7 +8,7 @@ You are assisting in the development of a personal portfolio website for a Cyber
 - **Styling**: Vanilla CSS in `src/index.css`. **Do NOT use TailwindCSS**.
 - **Animations**: `framer-motion` for page transitions and micro-interactions.
 - **Icons**: `lucide-react` (ensure icons are imported individually or from the main package if treeshaking is configured).
-- **State/Context**: Standard React Hooks (`useState`, `useEffect`, `useContext`) for language and theme management.
+- **State/Context**: Standard React Hooks (`useState`, `useEffect`, `useContext`) for language and theme management (Dark, Light, System preference).
 
 ## 🎨 Design System & Aesthetics
 - **Theme**: Cybersecurity / Hacker / Terminal aesthetic. Keep it sleek, minimal, and premium.
@@ -21,7 +21,7 @@ You are assisting in the development of a personal portfolio website for a Cyber
   - Primary text: `var(--font-sans)` (Inter)
   - Accents, titles, commands: `var(--font-mono)` (JetBrains Mono)
 - **UI Patterns**:
-  - Use `//` for page titles (e.g., `// PORTFOLIO`).
+  - Use `~/` for page titles (e.g., `~/ PORTFOLIO`).
   - Use `>` for links and buttons (e.g., `> Return Home`).
   - Do not use numbers for section headings.
 
@@ -39,3 +39,4 @@ You are assisting in the development of a personal portfolio website for a Cyber
 
 ## 🤫 Secret Features (Easter Eggs)
 - The site contains a hidden terminal overlay (`src/components/EasterEgg.jsx`). If proposing new features, consider if they fit well as hidden terminal commands.
+- Example existing terminal commands: `matrix`, `help`, `rm -rf /` (glitch trigger).

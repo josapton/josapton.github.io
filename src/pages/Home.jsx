@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import Particles from '../components/Particles'
 import { useLanguage } from '../context/LanguageContext'
 import { en } from '../locales/en'
@@ -37,23 +36,65 @@ function useTypingEffect(text, speed = 80, delay = 600) {
   return { displayed, done }
 }
 
+function useTypewriterRotation(words, typingSpeed = 80, deletingSpeed = 40, delayBetweenWords = 2000) {
+  const [displayed, setDisplayed] = useState('')
+  const [wordIndex, setWordIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    let timeout = null
+    const currentWord = words[wordIndex]
+
+    if (isDeleting) {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayed(currentWord.slice(0, displayed.length - 1))
+        }, deletingSpeed)
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(false)
+          setWordIndex((prev) => (prev + 1) % words.length)
+        }, deletingSpeed)
+      }
+    } else {
+      if (displayed.length < currentWord.length) {
+        timeout = setTimeout(() => {
+          setDisplayed(currentWord.slice(0, displayed.length + 1))
+        }, typingSpeed)
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(true)
+        }, delayBetweenWords)
+      }
+    }
+
+    return () => clearTimeout(timeout)
+  }, [displayed, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, delayBetweenWords])
+
+  return displayed
+}
+
 export default function Home() {
   const { lang } = useLanguage()
   const t = lang === 'en' ? en : id
 
   const { displayed: typedName, done: nameDone } = useTypingEffect('josapton', 120, 400)
-  const { displayed: typedMotto } = useTypingEffect(
+  const { displayed: typedMotto, done: mottoDone } = useTypingEffect(
     t.home.description,
     25,
     1800
   )
 
+  const rotatingInterests = [
+    t.home.interests.devsecops,
+    t.home.interests.cybersecurity,
+    t.home.interests.software,
+    t.home.interests.ai
+  ]
+  const currentInterest = useTypewriterRotation(rotatingInterests, 80, 40, 2500)
+
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
+    <div
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -77,6 +118,7 @@ export default function Home() {
       {/* Navigation */}
       <nav className="animate-fade-in" aria-label="Main navigation" style={{ marginBottom: 'auto', paddingTop: '2.5rem', zIndex: 10 }}>
         <ul style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', listStyle: 'none', padding: 0, margin: 0 }}>
+          <li><Link to="/about" className="nav-link" style={{ fontSize: '0.8125rem' }}>{t.nav.about}</Link></li>
           <li><Link to="/portfolio" className="nav-link" style={{ fontSize: '0.8125rem' }}>{t.nav.portfolio}</Link></li>
           <li><Link to="/contact" className="nav-link" style={{ fontSize: '0.8125rem' }}>{t.nav.contact}</Link></li>
         </ul>
@@ -102,7 +144,7 @@ export default function Home() {
 
         {/* Hero name with typing effect */}
         <h1 className="hero-title" style={{ marginBottom: '1.25rem' }}>
-          <span className="accent">{'>'}</span>{' '}
+          <span className="accent">#</span>{' '}
           {typedName}
           {!nameDone && <span className="cursor-blink" />}
         </h1>
@@ -122,34 +164,29 @@ export default function Home() {
             fontFamily: 'var(--font-mono)',
           }}>
             {typedMotto}
-            {nameDone && <span className="cursor-blink" />}
+            {nameDone && !mottoDone && <span className="cursor-blink" />}
           </p>
         </div>
 
-        {/* Interest badges */}
+        {/* Interest rotation */}
         <div className="animate-fade-in-delay-4" style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '1rem',
-          fontSize: '0.75rem',
+          minHeight: '2rem',
+          fontSize: '0.875rem',
           fontFamily: 'var(--font-mono)',
+          color: 'var(--color-accent)',
           letterSpacing: '0.05em',
+          marginTop: '1rem',
+          opacity: mottoDone ? 1 : 0, // only show after motto finishes
+          transition: 'opacity 0.5s ease'
         }}>
-          <span style={{ color: 'var(--color-accent)' }}>{t.home.interests.devsecops}</span>
-          <span style={{ color: 'var(--color-text-muted)' }}>·</span>
-          <span style={{ color: 'var(--color-accent)' }}>{t.home.interests.cybersecurity}</span>
-          <span style={{ color: 'var(--color-text-muted)' }}>·</span>
-          <span style={{ color: 'var(--color-text-muted)' }}>{t.home.interests.software}</span>
-          <span style={{ color: 'var(--color-text-muted)' }}>·</span>
-          <span style={{ color: 'var(--color-text-muted)' }}>{t.home.interests.ai}</span>
+          {'> '} {currentInterest}
+          <span className="cursor-blink" />
         </div>
       </main>
 
 
       {/* Spacer */}
       <div style={{ marginTop: 'auto' }} />
-    </motion.div>
+    </div>
   )
 }

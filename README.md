@@ -14,8 +14,10 @@ Live at: [https://josapton.github.io](https://josapton.github.io)
 ## ⚡ Features
 - **Network Nodes Effect**: Interactive canvas background representing infrastructure and connectivity with parallax mouse effects.
 - **Cyber/Terminal Theme**: Blinking cursors, monospace accents, scan lines, and command-line aesthetics.
-- **Hidden Terminal (Easter Egg)**: Type `~` or `sudo` to access a fully interactive terminal overlay with commands like `help`, `ls`, `neofetch`, and `ping`.
-- **Command Palette**: Press `Ctrl/Cmd + K` for a quick navigation and action menu.
+- **Hidden Terminal (Easter Egg)**: Type `~` or `sudo` to access a fully interactive terminal overlay with commands like `help`, `ls`, `neofetch`, and `ping`. Try the `matrix` command!
+- **System Robustness**: Implemented a global React `ErrorBoundary` (Kernel Panic UI), an `OfflineBanner` for PWA state awareness, and strict `Content-Security-Policy` headers.
+- **Command Palette**: Press `Ctrl/Cmd + K` for a quick navigation and action menu (with clipboard integration).
+- **Theme Manager**: 3-state Context-based Theme Manager (Dark, Light, System Preference).
 - **Real-Time GitHub Stats**: Fetches live repository and star counts from the GitHub API with local caching.
 - **Bilingual (i18n)**: Full English (EN) and Indonesian (ID) support with seamless context-based switching.
 - **Optimized PWA & SEO**: Structured JSON-LD data, Apple web app meta tags, robust accessibility (ARIA roles), and Service Worker caching.
