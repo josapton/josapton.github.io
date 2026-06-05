@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Home, Briefcase, Mail, Moon, Sun, Globe, FileText } from 'lucide-react'
+import { Search, Home, Briefcase, Mail, Moon, Sun, Globe, FileText, User, Copy, Monitor } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
+import { useTheme } from '../context/ThemeContext'
 import { en } from '../locales/en'
 import { id } from '../locales/id'
 
@@ -14,6 +15,7 @@ export default function CommandPalette() {
   const navigate = useNavigate()
   
   const { lang, toggleLang } = useLanguage()
+  const { theme, cycleTheme } = useTheme()
   const t = lang === 'en' ? en.cmd : id.cmd
 
   // Keyboard shortcut listener
@@ -57,6 +59,7 @@ export default function CommandPalette() {
       group: t.navigation,
       items: [
         { id: 'home', label: t.goHome, icon: <Home size={16} />, action: () => navigate('/') },
+        { id: 'about', label: t.goAbout || 'Go to About', icon: <User size={16} />, action: () => navigate('/about') },
         { id: 'portfolio', label: t.goPortfolio, icon: <Briefcase size={16} />, action: () => navigate('/portfolio') },
         { id: 'contact', label: t.goContact, icon: <Mail size={16} />, action: () => navigate('/contact') },
       ]
@@ -66,14 +69,9 @@ export default function CommandPalette() {
       items: [
         { 
           id: 'theme', 
-          label: t.toggleTheme, 
-          icon: document.documentElement.getAttribute('data-theme') === 'light' ? <Moon size={16} /> : <Sun size={16} />, 
-          action: () => {
-            const current = document.documentElement.getAttribute('data-theme')
-            const next = current === 'dark' ? 'light' : 'dark'
-            document.documentElement.setAttribute('data-theme', next)
-            localStorage.setItem('theme', next)
-          } 
+          label: t.toggleTheme + ` (Current: ${theme})`, 
+          icon: theme === 'system' ? <Monitor size={16} /> : (theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />), 
+          action: cycleTheme
         },
         { 
           id: 'lang', 
@@ -81,12 +79,20 @@ export default function CommandPalette() {
           icon: <Globe size={16} />, 
           action: toggleLang 
         },
-        {
-          id: 'resume',
-          label: t.downloadResume || 'Download Resume',
-          icon: <FileText size={16} />,
-          action: () => window.open('/resume.pdf', '_blank')
-        }
+        { 
+          id: 'resume', 
+          label: t.viewResume || 'View Resume', 
+          icon: <FileText size={16} />, 
+          action: () => window.dispatchEvent(new Event('open-resume')) 
+        },
+        { 
+          id: 'copy-email', 
+          label: 'Copy Email Address', 
+          icon: <Copy size={16} />, 
+          action: () => {
+            navigator.clipboard.writeText('jokosaptono1337@gmail.com')
+          }
+        },
       ]
     }
   ]
@@ -120,16 +126,15 @@ export default function CommandPalette() {
     }
   }, [flatItems, selectedIndex])
 
-  if (!open) return null
-
   // Track the global index across groups for highlighting
   let globalIndex = -1
 
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
         role="dialog"
@@ -267,6 +272,7 @@ export default function CommandPalette() {
           </div>
         </motion.div>
       </motion.div>
+      )}
     </AnimatePresence>
   )
 }

@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Download } from 'lucide-react'
+import { Mail, FileText, Copy, Check } from 'lucide-react'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import { useLanguage } from '../context/LanguageContext'
@@ -47,52 +48,46 @@ const stagger = {
 export default function Contact() {
   const { lang } = useLanguage()
   const t = lang === 'en' ? en : id
+  const [copied, setCopied] = useState(null)
 
+  const handleCopy = (e, text) => {
+    e.preventDefault()
+    e.stopPropagation()
+    navigator.clipboard.writeText(text)
+    setCopied(text)
+    setTimeout(() => setCopied(null), 2000)
+  }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="page-container"
-    >
+    <div className="page-container">
       <div className="grid-bg" />
       <Navigation />
 
-      <main style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        padding: '6rem 1.5rem 4rem',
-      }}>
+      <main className="page-content">
         <motion.div
-          style={{ textAlign: 'center', marginBottom: '2.5rem' }}
+          className="page-header"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
           <h1 className="page-title" style={{ marginBottom: '0.625rem' }}>
-            <span className="accent">//</span> {t.contact.title}<span className="cursor-blink" />
+            <span className="accent">~/</span> {t.contact.title}<span className="cursor-blink" />
           </h1>
-          <p className="page-description" style={{ marginBottom: '1.5rem', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>
+          <p className="page-description" style={{ marginBottom: '1.5rem' }}>
             {t.contact.description}
           </p>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="section-shortcut"
-            style={{ textDecoration: 'none', display: 'inline-flex', padding: '0.5rem 1rem' }}
-          >
-            <Download size={14} className="accent" style={{ marginRight: '0.375rem' }} />
-            {t.contact.downloadResume}
-          </a>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => window.dispatchEvent(new Event('open-resume'))}
+              className="section-shortcut"
+            >
+              <FileText size={14} className="accent" style={{ marginRight: '0.375rem' }} />
+              {t.contact.viewResume}
+            </button>
+          </div>
         </motion.div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%', maxWidth: '800px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%', marginTop: '2rem' }}>
           
           <motion.div
             style={{ width: '100%' }}
@@ -100,23 +95,59 @@ export default function Contact() {
             initial="hidden"
             animate="show"
           >
-            <div className="contact-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
               {socials.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
                   target={social.href.startsWith('mailto') ? undefined : '_blank'}
                   rel={social.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                  className="card contact-card"
+                  className="card"
                   variants={stagger.item}
-                  whileHover={{ y: -3 }}
-                  style={{ display: 'block', textDecoration: 'none' }}
+                  whileHover={{ y: -4 }}
+                  style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'flex-start',
+                    textDecoration: 'none', 
+                    padding: '2rem 1.5rem',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
                 >
-                  <div className="icon-wrapper">
-                    {social.icon}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '1.5rem' }}>
+                    <div style={{ color: 'var(--color-accent)', transform: 'scale(1.2)', transformOrigin: 'left center' }}>
+                      {social.icon}
+                    </div>
+                    <button
+                      onClick={(e) => handleCopy(e, social.handle)}
+                      style={{
+                        background: 'transparent',
+                        border: 'none',
+                        color: copied === social.handle ? 'var(--color-accent)' : 'var(--color-text-muted)',
+                        cursor: 'pointer',
+                        padding: '0.25rem',
+                        transition: 'all var(--transition-fast)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                      title="Copy to clipboard"
+                      aria-label="Copy handle"
+                    >
+                      {copied === social.handle ? <Check size={16} /> : <Copy size={16} />}
+                    </button>
                   </div>
-                  <div className="label">{social.label}</div>
-                  <div className="handle">{social.handle}</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'var(--font-mono)' }}>
+                      {social.label}
+                    </div>
+                    <div style={{ fontSize: '1rem', color: 'var(--color-text-primary)', fontFamily: 'var(--font-mono)', overflowWrap: 'anywhere', lineHeight: '1.4' }}>
+                      {social.handle}
+                    </div>
+                  </div>
+                  {/* Subtle hover accent corner */}
+                  <div className="hover-accent-corner" style={{ position: 'absolute', bottom: 0, right: 0, width: '30px', height: '30px', background: 'radial-gradient(circle at bottom right, var(--color-accent-dim) 0%, transparent 70%)', opacity: 0, transition: 'opacity 0.3s ease' }} />
                 </motion.a>
               ))}
             </div>
@@ -125,6 +156,6 @@ export default function Contact() {
         </div>
       </main>
       <Footer />
-    </motion.div>
+    </div>
   )
 }
