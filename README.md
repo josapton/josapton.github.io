@@ -18,7 +18,7 @@ Live at: [https://josapton.github.io](https://josapton.github.io)
 - **System Robustness**: Implemented a global React `ErrorBoundary` (Kernel Panic UI), an `OfflineBanner` for PWA state awareness, and strict `Content-Security-Policy` headers.
 - **Command Palette**: Press `Ctrl/Cmd + K` for a quick navigation and action menu (with clipboard integration).
 - **Theme Manager**: 3-state Context-based Theme Manager (Dark, Light, System Preference).
-- **Real-Time GitHub Stats**: Fetches live repository and star counts from the GitHub API with local caching.
+- **Dynamic GitHub Stats via CI/CD**: Uses a custom GitHub Actions pipeline to fetch deep metrics and language breakdowns at build-time, injecting them statically without exposing API tokens or hitting rate limits on the client side.
 - **Bilingual (i18n)**: Full English (EN) and Indonesian (ID) support with seamless context-based switching.
 - **Optimized PWA & SEO**: Structured JSON-LD data, Apple web app meta tags, robust accessibility (ARIA roles), and Service Worker caching.
 - **Dynamic Routing**: Built with `react-router-dom` using `BrowserRouter` and GitHub Pages SPA fallback.
