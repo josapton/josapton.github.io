@@ -296,22 +296,28 @@ export default function GithubStats() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.5 }}
-        style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', overflowX: 'auto' }}
+        style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)', marginBottom: '0.5rem' }}>
           <Calendar size={14} className="accent" /> {t.github.contributions}
         </div>
-        <div style={{ minWidth: '700px' }}>
-          <GitHubCalendar 
-            username="josapton" 
-            colorScheme="dark"
-            theme={calendarTheme}
-            fontSize={12}
-            blockSize={12}
-            blockMargin={4}
-            hideColorLegend={false}
-            hideTotalCount={false}
-          />
+        <div style={{ 
+          width: '100%', 
+          overflowX: 'auto',
+          textAlign: 'center'
+        }}>
+          <div style={{ display: 'inline-block', minWidth: 'max-content', textAlign: 'left' }}>
+            <GitHubCalendar 
+              username="josapton" 
+              colorScheme="dark"
+              theme={calendarTheme}
+              fontSize={12}
+              blockSize={12}
+              blockMargin={4}
+              hideColorLegend={false}
+              hideTotalCount={false}
+            />
+          </div>
         </div>
       </motion.div>
 

@@ -2,7 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
+  schedule:
+    - cron: '0 0 * * *' # Run once a day at midnight UTC to fetch latest stats
   workflow_dispatch:
 
 permissions:
@@ -29,6 +31,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Fetch Advanced Stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-github-stats.js
 
       - name: Build
         run: npm run build

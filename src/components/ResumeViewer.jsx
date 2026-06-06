@@ -46,7 +46,7 @@ export default function ResumeViewer() {
           }}
         >
           {/* Toolbar */}
-          <div style={{
+          <div className="resume-toolbar" style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -60,8 +60,8 @@ export default function ResumeViewer() {
               </span>
             </div>
 
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', background: 'rgba(255,255,255,0.05)', padding: '0.25rem', borderRadius: 'var(--radius)', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div className="resume-toolbar-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <div className="resume-zoom-controls" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', background: 'rgba(255,255,255,0.05)', padding: '0.25rem', borderRadius: 'var(--radius)', border: '1px solid rgba(255,255,255,0.1)' }}>
                 <button onClick={() => setZoom(z => Math.max(0.5, z - 0.1))} aria-label="Zoom Out" style={{ background: 'none', border: 'none', color: 'var(--color-text-primary)', cursor: 'pointer', display: 'flex', padding: '0.25rem' }}>
                   <ZoomOut size={16} />
                 </button>
@@ -91,7 +91,7 @@ export default function ResumeViewer() {
                   fontWeight: 'bold'
                 }}
               >
-                <Printer size={16} /> Print / PDF
+                <Printer size={16} /> <span className="resume-print-text">Print / PDF</span>
               </button>
               
               <button 
@@ -107,7 +107,7 @@ export default function ResumeViewer() {
           </div>
 
           {/* Document Area */}
-          <div style={{
+          <div className="resume-scroll-container" style={{
             flex: 1,
             overflow: 'auto',
             display: 'flex',
@@ -118,7 +118,7 @@ export default function ResumeViewer() {
               transform: `scale(${zoom})`,
               transformOrigin: 'top center',
               transition: 'transform 0.2s ease-out'
-            }}>
+            }} className="resume-scale-wrapper">
               <ResumeContent />
             </div>
           </div>

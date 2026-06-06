@@ -21,6 +21,7 @@ const COMMANDS = {
     '  curl       — Fetch remote payload',
     '  clear      — Clear terminal',
     '  matrix     — Enter the simulation',
+    '  audit      — Run security audit',
     '  exit       — Close terminal',
   ],
   whoami: () => ['root (sysadmin)'],
@@ -101,7 +102,19 @@ const COMMANDS = {
     '80/tcp   open  http',
     '443/tcp  open  https',
     '8080/tcp open  http-proxy',
-    'Nmap done: 1 IP address (1 host up) scanned in 0.42 seconds'
+    'Nmap done: 1 IP address (1 host up) scanned in 0.04 seconds'
+  ],
+  audit: () => [
+    'Initiating deep system audit...',
+    '[-] Checking Content Security Policy... PASS',
+    '[-] Verifying dependency trees... PASS (0 vulnerabilities)',
+    '[-] Analyzing bundle size & chunks... PASS (optimized)',
+    '[-] Running Lighthouse accessibility scan... PASS (100%)',
+    '[-] Sweeping for leaked secrets (console/env)... PASS',
+    '[-] Testing PWA Service Worker manifest... PASS',
+    '',
+    '[+] Audit Complete. System Status: SECURE & PRODUCTION-READY',
+    '[+] Target: josapton.github.io is heavily fortified.'
   ],
   curl: () => [
     'curl: (6) Could not resolve host: secret-payload.local',
