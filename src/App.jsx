@@ -9,11 +9,11 @@ import ScrollProgress from './components/ScrollProgress'
 import OfflineBanner from './components/OfflineBanner'
 import ErrorBoundary from './components/ErrorBoundary'
 import Home from './pages/Home'
-import About from './pages/About'
 import TerminalTransition from './components/TerminalTransition'
 import { ThemeProvider } from './context/ThemeContext'
 
 // Lazy load pages for code splitting (Item #8)
+const About = lazy(() => import('./pages/About'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
 const Contact = lazy(() => import('./pages/Contact'))
 const NotFound = lazy(() => import('./pages/NotFound'))

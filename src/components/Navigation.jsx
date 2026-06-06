@@ -81,6 +81,7 @@ export default function Navigation() {
           color: 'var(--color-text-primary)',
           transition: 'color var(--transition-slow)',
         }}
+        aria-current={location.pathname === '/' ? 'page' : undefined}
       >
         <img 
           src="/favicon.png" 
@@ -105,6 +106,7 @@ export default function Navigation() {
                 onClick={() => handleNavClick('/about')}
                 aria-haspopup="true"
                 aria-expanded={dropdownAbout}
+                aria-current={isAboutActive ? 'page' : undefined}
               >
                 {t.about}
               </Link>
@@ -133,6 +135,7 @@ export default function Navigation() {
                 onClick={() => handleNavClick('/portfolio')}
                 aria-haspopup="true"
                 aria-expanded={dropdownPortfolio}
+                aria-current={isPortfolioActive ? 'page' : undefined}
               >
                 {t.portfolio}
               </Link>
@@ -154,6 +157,7 @@ export default function Navigation() {
                 to="/contact" 
                 className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}
                 onClick={() => handleNavClick('/contact')}
+                aria-current={location.pathname === '/contact' ? 'page' : undefined}
               >
                 {t.contact}
               </Link>
@@ -225,11 +229,11 @@ export default function Navigation() {
               className="mobile-menu"
             >
             <div className="mobile-menu-inner">
-              <Link to="/" className="mobile-nav-link" onClick={() => handleNavClick('/')}>
+              <Link to="/" className="mobile-nav-link" onClick={() => handleNavClick('/')} aria-current={location.pathname === '/' ? 'page' : undefined}>
                 <span className="accent">$</span> {t.home}
               </Link>
               
-              <Link to="/about" className={`mobile-nav-link ${isAboutActive ? 'active' : ''}`} onClick={() => handleNavClick('/about')}>
+              <Link to="/about" className={`mobile-nav-link ${isAboutActive ? 'active' : ''}`} onClick={() => handleNavClick('/about')} aria-current={isAboutActive ? 'page' : undefined}>
                 <span className="accent">$</span> {t.about}
               </Link>
               <div className="mobile-sub-menu">
@@ -241,7 +245,7 @@ export default function Navigation() {
                 </button>
               </div>
 
-              <Link to="/portfolio" className={`mobile-nav-link ${isPortfolioActive ? 'active' : ''}`} onClick={() => handleNavClick('/portfolio')}>
+              <Link to="/portfolio" className={`mobile-nav-link ${isPortfolioActive ? 'active' : ''}`} onClick={() => handleNavClick('/portfolio')} aria-current={isPortfolioActive ? 'page' : undefined}>
                 <span className="accent">$</span> {t.portfolio}
               </Link>
               <div className="mobile-sub-menu">
@@ -253,7 +257,7 @@ export default function Navigation() {
                 </button>
               </div>
               
-              <Link to="/contact" className={`mobile-nav-link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={() => handleNavClick('/contact')}>
+              <Link to="/contact" className={`mobile-nav-link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={() => handleNavClick('/contact')} aria-current={location.pathname === '/contact' ? 'page' : undefined}>
                 <span className="accent">$</span> {t.contact}
               </Link>
             </div>

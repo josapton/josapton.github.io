@@ -959,18 +959,55 @@ img {
     align-items: center;
     justify-content: center;
   }
+
+  .resume-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-paper {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .resume-toolbar {
+    padding: 0.75rem 1rem !important;
+  }
+
+  .resume-toolbar-actions {
+    gap: 0.5rem !important;
+  }
+
+  .resume-zoom-controls {
+    display: none !important;
+  }
+
+  .resume-print-text {
+    display: none !important;
+  }
+
+  .resume-print-btn {
+    padding: 0.5rem !important;
+  }
 }
 
 /* --- Resume Viewer Styles --- */
 .resume-paper {
   background-color: #fff;
   color: #111;
-  width: 210mm;
+  width: 100%;
+  max-width: 210mm;
   min-height: 297mm;
   padding: 20mm;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   margin: 0 auto;
   font-family: var(--font-sans);
+  box-sizing: border-box;
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
 }
 
 .resume-paper h1, .resume-paper h2, .resume-paper h3, .resume-paper h4 {
@@ -999,18 +1036,39 @@ img {
     top: 0;
     width: 210mm; /* A4 width */
     height: 297mm; /* A4 height */
-    padding: 15mm; /* Typical print margin */
+    padding: 10mm;
     margin: 0;
     box-shadow: none; /* No shadow on print */
     background: transparent; /* Save ink */
   }
 
+  /* Force 2 column layout on print regardless of screen size */
+  .resume-grid {
+    grid-template-columns: 2fr 1fr !important;
+  }
+
+  /* Cancel zoom transform on print */
+  .resume-scale-wrapper {
+    transform: none !important;
+  }
+
   /* Ensure modal backdrop and scrollbars don't interfere */
   .resume-modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: absolute !important;
+    inset: auto !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: auto !important;
+    width: 100% !important;
     background: transparent !important;
     backdrop-filter: none !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .resume-scroll-container {
+    overflow: visible !important;
+    display: block !important;
+    padding: 0 !important;
   }
 }

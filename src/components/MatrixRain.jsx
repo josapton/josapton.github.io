@@ -25,32 +25,41 @@ export default function MatrixRain({ onClose }) {
       drops[x] = 1
     }
     
-    const draw = () => {
-      // Translucent black background to create trail effect
-      ctx.fillStyle = 'rgba(10, 15, 13, 0.05)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      
-      ctx.fillStyle = '#0f0' // Bright green text
-      ctx.font = fontSize + 'px monospace'
-      
-      for(let i = 0; i < drops.length; i++) {
-        // Random character
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length))
+    let animationFrameId
+    let lastDrawTime = 0
+    const fps = 30 // Target 30fps for matrix rain look
+    const interval = 1000 / fps
+
+    const render = (timestamp) => {
+      if (timestamp - lastDrawTime > interval) {
+        // Translucent black background to create trail effect
+        ctx.fillStyle = 'rgba(10, 15, 13, 0.05)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
         
-        // x = i*fontSize, y = value of drops[i]*fontSize
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize)
+        ctx.fillStyle = '#0f0' // Bright green text
+        ctx.font = fontSize + 'px monospace'
         
-        // Reset drop to top randomly
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0
+        for(let i = 0; i < drops.length; i++) {
+          // Random character
+          const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length))
+          
+          // x = i*fontSize, y = value of drops[i]*fontSize
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize)
+          
+          // Reset drop to top randomly
+          if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0
+          }
+          
+          // Move drop down
+          drops[i]++
         }
-        
-        // Move drop down
-        drops[i]++
+        lastDrawTime = timestamp
       }
+      animationFrameId = requestAnimationFrame(render)
     }
     
-    const interval = setInterval(draw, 30)
+    animationFrameId = requestAnimationFrame(render)
 
     // Handle resize
     const handleResize = () => {
@@ -68,7 +77,7 @@ export default function MatrixRain({ onClose }) {
     window.addEventListener('keydown', handleKeyDown)
     
     return () => {
-      clearInterval(interval)
+      cancelAnimationFrame(animationFrameId)
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('keydown', handleKeyDown)
     }
@@ -77,6 +86,7 @@ export default function MatrixRain({ onClose }) {
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       style={{
         position: 'fixed',
         top: 0,
